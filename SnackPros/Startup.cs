@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using SnackPros.DataAccess;
 using SnackPros.DataAccess.Data.Repository.IRepository;
 using SnackPros.DataAccess.Data.Repository;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using SnackPros.Utility;
 
 namespace SnackPros
 {
@@ -33,8 +35,10 @@ namespace SnackPros
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

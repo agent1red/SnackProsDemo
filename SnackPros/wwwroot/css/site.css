@@ -1,10 +1,12 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
@@ -173,6 +175,35 @@ body {
     .login-form h2 {
         margin: 0 0 15px;
     }
+
+    /*button customization*/
+
+.popup-button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 6px;
+    margin: 6px;
+    padding: .5em 3em;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-image: linear-gradient(to right, #78C2AD 0%, #a9ffe7 60%, #78C2AD 100%);
+    transition: 0.5s;
+}
+
+    .popup-button:hover {
+        background-position: right center;
+        text-decoration: none;
+    }
+
+
+
 
 
 .card {

@@ -18,5 +18,6 @@ namespace SnackPros.DataAccess
         public DbSet<Category> Category { get; set; }
         public DbSet<SnackType> SnackType { get; set; }
         public DbSet<MenuItem> MenuItem { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

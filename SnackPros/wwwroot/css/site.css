@@ -174,9 +174,12 @@ body {
         margin: 0 0 15px;
     }
 
-    .card-title {
-        margin-bottom: 20px;
-    }
+
+.card {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    border: 1px solid #008cba;
+    border-radius: 5px;
+}
 .card-img-top {
     width: 100% !important;
     height: 200px !important;

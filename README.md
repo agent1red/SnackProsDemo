@@ -11,4 +11,4 @@ ASP.NET Core Razor Pages Demo
 - Creating Multiple Users with different Roles
 
  
-<a href="url"><img src="https://github.com/agent1red/SnackProsDemo/blob/master/AppImages/SnackProsCustomerPage.PNG?raw=true" width="600" height="400"  style="border-radius:5%" /></a>
+<a href="https://github.com/agent1red/SnackProsDemo/blob/master/AppImages/SnackProsCustomerPage.PNG?raw=true"><img src="https://github.com/agent1red/SnackProsDemo/blob/master/AppImages/SnackProsCustomerPage.PNG?raw=true" width="600" height="400"  style="border-radius:5%" /></a>

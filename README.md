@@ -10,4 +10,4 @@ ASP.NET Core Razor Pages Demo
 - File Uploading
 - Creating Multiple Users with different Roles
 
-https://github.com/agent1red/SnackProsDemo/blob/master/AppImages/SnackProsCustomerPage.PNG?raw=true
+![Image of SnackPro App Front Page](https://github.com/agent1red/SnackProsDemo/blob/master/AppImages/SnackProsCustomerPage.PNG?raw=true)

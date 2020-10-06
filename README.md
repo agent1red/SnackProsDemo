@@ -8,3 +8,4 @@ ASP.NET Core Razor Pages Demo
 - DataBase Migrations (code first approach)
 - Table creating/sorting on load
 - File Uploading
+- Creating Multiple Users with different Roles

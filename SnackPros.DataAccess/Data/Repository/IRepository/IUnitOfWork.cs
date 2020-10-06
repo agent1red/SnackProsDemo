@@ -10,6 +10,7 @@ namespace SnackPros.DataAccess.Data.Repository.IRepository
         ICategoryRepository Category { get; }
         ISnackTypeRepository SnackType { get; }
         IMenuItemRepository MenuItem { get; }
+        IApplicationUserRepository ApplicationUser { get; }
 
         void Save();
     }

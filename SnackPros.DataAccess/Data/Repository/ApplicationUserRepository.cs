@@ -17,7 +17,7 @@ namespace SnackPros.DataAccess.Data.Repository
             _db = db;
         }
 
-   
+         
       
     }
 }

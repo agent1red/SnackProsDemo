@@ -29,12 +29,14 @@ namespace SnackPros.Controllers
         public IActionResult LockUnlock([FromBody] string id)
         {
             var objFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == id);
+            bool userIsLocked = objFromDb.LockoutEnd != null && objFromDb.LockoutEnd > DateTime.Now;
+
             if (objFromDb == null)
             {
                 return Json(new { success = false, message = "Error while Locking/unlocking" });
             }
             // If user is locked
-            if (objFromDb.LockoutEnd != null && objFromDb.LockoutEnd > DateTime.Now)
+            if (userIsLocked)
             {
                 objFromDb.LockoutEnd = DateTime.Now;
             }
@@ -44,8 +46,9 @@ namespace SnackPros.Controllers
                 objFromDb.LockoutEnd = DateTime.Now.AddYears(10);
             }
             _unitOfWork.Save();
-
-            return Json(new { success = true, message = "Operation successful" });
+           
+            return userIsLocked ? Json(new { success = true, message = "User Unlocked Successful " }) 
+                : Json(new { success = true, message = "User Locked Successful" });
         }
 
     }

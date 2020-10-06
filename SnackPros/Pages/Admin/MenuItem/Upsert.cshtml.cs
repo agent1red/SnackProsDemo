@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SnackPros.DataAccess.Data.Repository.IRepository;
 using SnackPros.Models.ViewModels;
+using SnackPros.Utility;
 
 namespace SnackPros.Pages.Admin.MenuItem
 {
+    [Authorize(Roles = SD.ManagerRole)]
     public class UpsertModel : PageModel
     {
             private readonly IUnitOfWork _unitOfWork;

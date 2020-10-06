@@ -38,6 +38,11 @@ namespace SnackPros
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            //added path to access denied view 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            });
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
 

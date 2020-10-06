@@ -1,6 +1,8 @@
 ﻿@page
+@using SnackPros.Utility
 
-
+@if (User.IsInRole(SD.ManagerRole))
+{
 <div class="border backgroundWhite container">
     <div class="row">
         <div class="col-6">
@@ -23,6 +25,13 @@
         </thead>
     </table>
 </div>
+
+}
+else {
+<h1 class="text-danger">Access Denied</h1>
+}
+
+
 
 @section Scripts{
     <script src="~/js/menuItem.js"></script>

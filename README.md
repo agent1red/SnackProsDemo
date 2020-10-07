@@ -10,5 +10,6 @@ ASP.NET Core Razor Pages Demo
 - File Uploading
 - Creating Multiple Users with different Roles
 - User Authorization and account Lock 
+- Shopping cart functionality with session loading 
  
 <a href="https://github.com/agent1red/SnackProsDemo/blob/master/AppImages/SnackProsCustomerPage.PNG?raw=true"><img src="https://github.com/agent1red/SnackProsDemo/blob/master/AppImages/SnackProsCustomerPage.PNG?raw=true" width="600" height="400"  style="border-radius:5%" /></a>

@@ -30,9 +30,11 @@ namespace SnackPros.Models
         [Display(Name = "Pick Up Time")]
         public DateTime PickUpTime { get; set; } 
         
-        [Required]
-        [NotMapped]
-        public DateTime PickUpDate { get; set; }
+        [Display(Name = "Pickup Name")]
+        public string PickupName { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
 
         public string Status { get; set; }
 
@@ -40,14 +42,12 @@ namespace SnackPros.Models
 
         public string Comments { get; set; }
 
-        [Display(Name = "Pickup Name")]
-        public string Pickupname { get; set; }
-
-        [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
 
         public string TransactionId { get; set; }
 
+        [Required]
+        [NotMapped]
+        public DateTime PickUpDate { get; set; }
 
 
     }

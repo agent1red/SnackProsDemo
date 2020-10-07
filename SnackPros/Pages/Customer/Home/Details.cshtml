@@ -7,6 +7,8 @@
 
 <div class="">
     <form method="post">
+        <input type="hidden" asp-for="ShopingCartObj.MenuItemId"/>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="container backgroundWhite">
             <div class="card">
                 <div class="card-header bg-light text-light ml-0 row container">
@@ -64,3 +66,8 @@
         </div>
     </form>
 </div>
+
+@section Scripts{ 
+    <partial name="_ValidationScriptsPartial" />
+
+}

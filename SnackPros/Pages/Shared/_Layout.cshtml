@@ -1,4 +1,9 @@
-﻿@using SnackPros.Utility
+﻿@*In order to update cart count on _Layout use Http and HttpContextAccessor*@
+
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using SnackPros.Utility
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,23 +36,37 @@
                         </li>
                         @if (User.IsInRole(SD.ManagerRole))
                         {
-                        <li class="nav-item dropdown">
-                            <a href="#" id="navbarDropDown" class="nav-link text-white dropdown-toggle" data-toggle="dropdown">
-                                Admin
-                            </a>
-                            <div class="dropdown-menu bg-primary">
-                                <a class="dropdown-item text-white" asp-page="/Admin/Category/Index">Category</a>
-                                <a class="dropdown-item text-white" asp-page="/Admin/SnackType/Index">Snack Type</a>
-                                <a class="dropdown-item text-white" asp-page="/Admin/MenuItem/Index">Menu Item</a>
-                                <a class="dropdown-item text-white" asp-page="/Admin/User/Index">Users</a>
-                            </div>
-                        </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" id="navbarDropDown" class="nav-link text-white dropdown-toggle" data-toggle="dropdown">
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu bg-primary">
+                                    <a class="dropdown-item text-white" asp-page="/Admin/Category/Index">Category</a>
+                                    <a class="dropdown-item text-white" asp-page="/Admin/SnackType/Index">Snack Type</a>
+                                    <a class="dropdown-item text-white" asp-page="/Admin/MenuItem/Index">Menu Item</a>
+                                    <a class="dropdown-item text-white" asp-page="/Admin/User/Index">Users</a>
+                                </div>
+                            </li>
                         }
-                    <li>
-                        <a href="" class="nav-link text-white-50">
-                            <i class="fas fa-shopping-cart"></i> &nbsp; (0)
-                        </a>
-                    </li>
+                        @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.ShoppingCart) != null)
+                        {
+                            <li>
+                                <a href="" class="nav-link text-white-50">
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.ShoppingCart);
+                                    }
+                                    <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                                </a>
+                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="" class="nav-link text-white-50">
+                                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                                                </a>
+                                            </li>
+                                        }
                     </ul>
                 </div>
             </div>

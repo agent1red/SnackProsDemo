@@ -11,6 +11,7 @@ namespace SnackPros.DataAccess.Data.Repository.IRepository
         ISnackTypeRepository SnackType { get; }
         IMenuItemRepository MenuItem { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IShoppingCartRepository ShoppingCart { get; }
 
         void Save();
     }

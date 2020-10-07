@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201002193855_addMenuItemToDb.cs" />
     <Compile Remove="Migrations\20201002193855_addMenuItemToDb.Designer.cs" />
+    <Compile Remove="Migrations\20201007144106_ChangeShoppingCartDb.cs" />
+    <Compile Remove="Migrations\20201007144106_ChangeShoppingCartDb.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

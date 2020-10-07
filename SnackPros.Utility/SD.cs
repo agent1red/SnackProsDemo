@@ -11,5 +11,8 @@ namespace SnackPros.Utility
         public const string FrontDeskRole = "Front";
         public const string KitchenRole = "Kitchen";
         public const string CustomerRole = "Customer";
+
+        //added for shopping cart 
+        public const string ShoppingCart = "ShoppingCart";
     }
 }

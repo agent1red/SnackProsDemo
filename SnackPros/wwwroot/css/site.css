@@ -197,6 +197,10 @@ body {
     transition: 0.5s;
 }
 
+.popup-button-blue {
+    background-image: linear-gradient(to right, #00C7FF 0%, #8AE5FF 60%, #00C7FF 100%);
+}
+
     .popup-button:hover {
         background-position: right center;
         text-decoration: none;

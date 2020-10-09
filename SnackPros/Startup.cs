@@ -73,6 +73,12 @@ namespace SnackPros
                 facebookOptions.AppId = "347586786484061";
                 facebookOptions.AppSecret = "6e883594436e6e2f8fb4a81b8644da52";
             });
+
+            services.AddAuthentication().AddMicrosoftAccount(options =>
+            {
+                options.ClientId = "cb4c5e36-7bf4-4cd9-915f-657a7b7cd136";
+                options.ClientSecret = "i4uY12I8soVVosUuG0~b4H26y.~0oT.1zh";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

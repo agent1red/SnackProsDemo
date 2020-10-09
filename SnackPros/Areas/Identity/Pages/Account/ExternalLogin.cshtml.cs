@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using SnackPros.Models;
+using SnackPros.Utility;
 
 namespace SnackPros.Areas.Identity.Pages.Account
 {
@@ -21,7 +23,7 @@ namespace SnackPros.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        //private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
         // added role manager for external login 
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -30,13 +32,13 @@ namespace SnackPros.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender,
+            //IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
-            _emailSender = emailSender;
+           // _emailSender = emailSender;
             _roleManager = roleManager;
         }
 
@@ -140,11 +142,24 @@ namespace SnackPros.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                //changed to use Applicationuser and add props for external login 
+                var user = new ApplicationUser 
+                { 
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    PhoneNumber = Input.PhoneNumber
+                
+                };
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    //added for external login registration to set them as custoemr role only 
+                    await _userManager.AddToRoleAsync(user, SD.CustomerRole);
+
+
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
@@ -159,8 +174,8 @@ namespace SnackPros.Areas.Identity.Pages.Account
                             values: new { area = "Identity", userId = userId, code = code },
                             protocol: Request.Scheme);
 
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                           // $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                         // If account confirmation is required, we need to show the link if we don't have a real email sender
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)

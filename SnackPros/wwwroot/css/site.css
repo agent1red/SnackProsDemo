@@ -200,10 +200,11 @@ body {
     .popup-button:hover {
         background-position: right center;
         text-decoration: none;
+        color: #78C2AD;
     }
 
 .popup-button-blue {
-    background-image: linear-gradient(to right, #00C7FF 0%, #8AE5FF 60%, #00C7FF 100%);
+    background-image: linear-gradient(to right, #00C7FF 0%, #ABE9FB 30%, #00C7FF 100%);
 }
 
 .popup-button-blue:hover {
@@ -228,14 +229,14 @@ body {
     background-size: 200% auto;
     color: white;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    background-image: linear-gradient(to right, #00C7FF 0%, #8AE5FF 60%, #00C7FF 100%);
+    background-image: linear-gradient(to right, #00C7FF 0%, #8AE5FF 80%, #00C7FF 100%);
     transition: 0.5s;
 }
 
     .popup-button-primary:hover {
         background-position: right center;
         text-decoration: none;
-        color: #00C7FF;
+        color: #01A7D3;
     }
 
 /*Radio button customization*/

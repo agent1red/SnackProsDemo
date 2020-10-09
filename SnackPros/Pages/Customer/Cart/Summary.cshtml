@@ -1,5 +1,10 @@
-﻿@page
+﻿
+@*use inject IOptions and Microsoft.Extensions.Options to include stripe on this page*@
+
+@page
 @model SnackPros.Pages.Customer.Cart.SummaryModel
+@inject IOptions<SnackPros.Utility.StripeSettings> Stripe
+@using Microsoft.Extensions.Options
 @{
     ViewData["Title"] = "Summary";
 }
@@ -14,13 +19,13 @@
     <div class="backgroundWhiteBorder">
         <div class="container">
             <div class="card">
-                <div class="card-header bg-dark text-light ml-0 row container">
+                <div class="card-header bg-light text-primary ml-0 row container">
                     <div class="col-6">
                         <i class="fa fa-shopping-cart"></i> &nbsp;
                         Order Summary
                     </div>
                     <div class="col-6 text-right">
-                        <a asp-page="Index" class="btn btn-outline-info btn-sm">Back to Cart</a>
+                        <a asp-page="Index" class="btn popup-button-primary">Back to Cart</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -107,7 +112,25 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-4 offset-md-8">
-                            <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">Place Order</button>
+                            @*create variable for OrderTotal to have amount in cents for stripe*@
+                            @{ 
+                                var OrderTotalForStripe = Model.detailCart.OrderHeader.OrderTotal * 100;
+                            }
+                            <script src="https://checkout.stripe.com/checkout.js" 
+                                    class="stripe-button" 
+                                    data-key="@Stripe.Value.PublishableKey"
+                                    data-amount="@OrderTotalForStripe"
+                                    data-name="SnackPro Restaurant"
+                                    data-label="Place Order"
+                                    data-description="Easy Snacks On The Go!"
+                                    data-locale="auto"
+                                    data-zip-code="true"
+                                    data-allow-remember-me="false"
+                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
+                                
+                            </script>
+                            <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
+                            <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn popup-button form-control">Place Order</button>
                         </div>
                     </div>
                 </div>

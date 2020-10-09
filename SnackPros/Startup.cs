@@ -16,6 +16,8 @@ using SnackPros.DataAccess.Data.Repository.IRepository;
 using SnackPros.DataAccess.Data.Repository;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using SnackPros.Utility;
+using Stripe;
+using System.Configuration;
 
 namespace SnackPros
 {
@@ -54,6 +56,10 @@ namespace SnackPros
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+
+            //Added stripe configuration
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
@@ -86,6 +92,7 @@ namespace SnackPros
             app.UseAuthorization();
 
             app.UseMvc();
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
         }
     }
 }

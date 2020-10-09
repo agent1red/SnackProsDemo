@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using SnackPros.Utility;
 using Stripe;
 using System.Configuration;
+using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace SnackPros
 {
@@ -64,7 +66,13 @@ namespace SnackPros
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            
+
+            //Added Facebook login service 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = "347586786484061";
+                facebookOptions.AppSecret = "6e883594436e6e2f8fb4a81b8644da52";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

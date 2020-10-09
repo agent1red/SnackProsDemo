@@ -10,6 +10,7 @@ ASP.NET Core Razor Pages Demo
 - File Uploading
 - Creating Multiple Users with different Roles
 - User Authorization and account Lock 
+- SSO Using Facebook and Microsoft
 - Shopping cart functionality with session loading 
 - Using Stripe payment system
  

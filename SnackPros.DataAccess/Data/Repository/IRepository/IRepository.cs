@@ -28,5 +28,8 @@ namespace SnackPros.DataAccess.Data.Repository.IRepository
         void Add(T entity);
         void Remove(int id);
         void Remove(T entity);
+
+        //Added for removing items from cart from Summary model
+        void RemoveRange(IEnumerable<T> entity);
     }
 }

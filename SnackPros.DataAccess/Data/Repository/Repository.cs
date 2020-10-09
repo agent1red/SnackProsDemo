@@ -89,5 +89,11 @@ namespace SnackPros.DataAccess.Data.Repository
         {
             dbSet.Remove(entity);
         }
+
+        // Added to remove items from cart from Summary Model 
+        public void RemoveRange(IEnumerable<T> entity)
+        {
+            dbSet.RemoveRange(entity);
+        }
     }
 }

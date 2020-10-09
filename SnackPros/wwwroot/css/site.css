@@ -291,7 +291,9 @@ body {
         #logreg-forms .form-control:focus {
             z-index: 2;
         }
-
+.form-control:focus {
+    z-index: 2;
+}
     #logreg-forms .form-signin input[type="email"] {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
@@ -322,7 +324,7 @@ body {
         color: lightseagreen;
     }
 
-#logreg-form .lines {
+#logreg-forms .lines {
     width: 200px;
     border: 1px solid red;
 }
@@ -336,7 +338,19 @@ body {
     background-color: #3C589C;
 }
 
+.facebook-btn {
+    background-color: #3C589C;
+}
+
+.facebook-btn:hover, .microsoft-btn:hover {
+    color: #000000;
+}
+
 #logreg-forms .microsoft-btn {
+    background-color: #2672ec;
+}
+
+.microsoft-btn {
     background-color: #2672ec;
 }
 

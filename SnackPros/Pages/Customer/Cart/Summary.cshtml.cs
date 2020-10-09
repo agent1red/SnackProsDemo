@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SnackPros.DataAccess.Data.Repository.IRepository;
 using SnackPros.Models;
 using SnackPros.Utility;
+using Stripe;
 
 namespace SnackPros.Pages.Customer.Cart
 {
@@ -22,6 +23,7 @@ namespace SnackPros.Pages.Customer.Cart
         }
 
         // view model to add 
+        [BindProperty] // bind property to make it available to the OnPost() handler
         public OrderDetailsCart detailCart { get; set; }
         public IActionResult OnGet()
         {
@@ -69,7 +71,7 @@ namespace SnackPros.Pages.Customer.Cart
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            // Retrieve all teh items from the shopping cart 
+            // Retrieve all the items from the shopping cart 
             detailCart.listCart = _unitOfWork.ShoppingCart.GetAll(c => c.ApplicationUserId == claim.Value).ToList();
 
             //Update OrderHeader and change the PaymentStatus for the order status and payment and add Date/Time
@@ -116,7 +118,43 @@ namespace SnackPros.Pages.Customer.Cart
             HttpContext.Session.SetInt32(SD.ShoppingCart, 0);
             _unitOfWork.Save();
 
-            // Charge Stripe using creditcard (Stripe Logic)
+            if(stripeToken != null)
+            {
+              // Charge Stripe using creditcard (Stripe Logic)
+              var options = new ChargeCreateOptions
+              {
+                  //add amount in cents for stripe 
+                  Amount = Convert.ToInt32(detailCart.OrderHeader.OrderTotal * 100),
+                  Currency = "usd",
+                  Source = stripeToken, // from OnPost(stripeToken) argument
+                  Description = "Order ID : " + detailCart.OrderHeader.Id, // from cart Orderheader.Id 
+              };
+              var service = new ChargeService();
+              Charge charge = service.Create(options);
+
+              // Log transaction ID from stripe to database 
+
+              detailCart.OrderHeader.TransactionId = charge.Id;
+
+              if (charge.Status.ToLower() == "succeeded")
+              {
+                  // if successful send email 
+                  detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusApproved;
+                  detailCart.OrderHeader.Status = SD.StatusSubmitted;
+              }
+              else
+              {
+                  detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusRejected;
+              }
+
+            }
+            else
+            {
+                detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusRejected;
+            }
+            _unitOfWork.Save();
+
+            return RedirectToPage("/Customer/Cart/OrderConfirmation", new {id = detailCart.OrderHeader.Id });
         }
 
     }

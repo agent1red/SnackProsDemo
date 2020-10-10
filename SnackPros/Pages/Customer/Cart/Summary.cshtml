@@ -96,13 +96,13 @@
                                         </div>
                                         @{ subTotal = (details.MenuItem.Price * details.Count);}
 
-                                        <span class="text-muted">$@subTotal.ToString("0.00")</span>
+                                        <span class="text-muted">$@subTotal.ToString("#,##0.00")</span>
                                         @{ total += (details.MenuItem.Price * details.Count);}
                                     </li>
                                             }
                                     <li class="list-group-item d-flex justify-content-between bg-light">
                                         <small class="text-info">Total (USD)</small>
-                                        <strong class="text-info">$@total.ToString("0.00")</strong>
+                                        <strong class="text-info">$@total.ToString("#,##0.00")</strong>
                                     </li>
                                 </ul>
                             </div>

@@ -32,7 +32,7 @@ function loadList(param) {
             {
                 "data": "orderHeader.orderTotal", render: $.fn.dataTable.render.number(',', '.', 2, '$'),  "width": "20%"},
             {
-                "data": "id",
+                "data": "orderHeader.id",
                 "render": function (data) {
                     return ` <div class="text-center">
                                 <a href="/Admin/Order/OrderDetails?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">

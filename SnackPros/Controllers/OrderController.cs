@@ -24,9 +24,9 @@ namespace SnackPros.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
+        //Updated to get data from OrderList page for Cancelled, Completed, or Inprocessed orders 
         [HttpGet]
-        public  IActionResult Get()
+        public  IActionResult Get(string status = null)
         {
             List<OrderDetailsVM> orderListVM = new List<OrderDetailsVM>();
 
@@ -44,6 +44,28 @@ namespace SnackPros.Controllers
             {
                 //If not customer retrieve all the orders 
                 OrderHeaderList = _unitOfWork.OrderHeader.GetAll(null, null, "ApplicationUser");
+            }
+
+            //Added to get data from OrderList page for Cancelled, Completed, or Inprocessed orders 
+            if (status == "cancelled")
+            {
+                OrderHeaderList = OrderHeaderList.Where(o => o.Status == SD.StatusCancelled 
+                                                        || o.Status == SD.StatusRefunded
+                                                        || o.Status == SD.PaymentStatusRejected);
+            }
+            else
+            {
+                if (status == "completed")
+                {
+                    OrderHeaderList = OrderHeaderList.Where(o => o.Status == SD.StatusCompleted);
+                }
+                else
+                {
+                    OrderHeaderList = OrderHeaderList.Where(o => o.Status == SD.StatusReady 
+                                                                || o.Status == SD.StatusInProcess 
+                                                                || o.Status == SD.StatusSubmitted
+                                                                || o.Status == SD.PaymentStatusPending);
+                }
             }
 
             foreach (OrderHeader item in OrderHeaderList)

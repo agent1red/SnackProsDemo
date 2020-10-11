@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SnackPros.DataAccess.Data.Repository.IRepository;
@@ -26,6 +27,7 @@ namespace SnackPros.Controllers
 
         //Updated to get data from OrderList page for Cancelled, Completed, or Inprocessed orders 
         [HttpGet]
+        [Authorize]
         public  IActionResult Get(string status = null)
         {
             List<OrderDetailsVM> orderListVM = new List<OrderDetailsVM>();

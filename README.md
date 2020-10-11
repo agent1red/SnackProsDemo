@@ -1,5 +1,5 @@
 # SnackProsDemo
-ASP.NET Core Razor Pages Demo
+ASP.NET Core 3.1 Razor Pages Demo
 
 - Basic CRUD Operations in Razor Pages
 - Repository Pattern

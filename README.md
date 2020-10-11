@@ -1,7 +1,8 @@
 # SnackProsDemo
 ASP.NET Core 3.1 Razor Pages Demo
 
-- Basic CRUD Operations in Razor Pages
+- CRUD Operations in Razor Pages
+- ASP Handelers
 - Repository Pattern
 - API Controllers 
 - Server/Client Validation

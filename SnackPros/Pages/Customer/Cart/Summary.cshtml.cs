@@ -112,7 +112,8 @@ namespace SnackPros.Pages.Customer.Cart
                 _unitOfWork.OrderDetails.Add(orderDetails);
             }
             //added string conversion for formating price to $0.00 
-            detailCart.OrderHeader.OrderTotal = Convert.ToDouble(String.Format("0:##", detailCart.OrderHeader.OrderTotal));
+            //error converting bug 10/11/2020
+            detailCart.OrderHeader.OrderTotal =  detailCart.OrderHeader.OrderTotal;
             // remove from cart from database using RemoveRange ref (Irepository, Repository)
             _unitOfWork.ShoppingCart.RemoveRange(detailCart.listCart);
 

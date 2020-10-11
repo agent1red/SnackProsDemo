@@ -45,6 +45,7 @@ namespace SnackPros
             //added path to access denied view 
             services.ConfigureApplicationCookie(options =>
             {
+                options.LoginPath = "/Identity/Account/Login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
             });
             services.AddSingleton<IEmailSender, EmailSender>();
@@ -62,8 +63,11 @@ namespace SnackPros
             //Added stripe configuration
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
-            services.AddMvc(options => options.EnableEndpointRouting = false)
-                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            //services.AddMvc(options => options.EnableEndpointRouting = false)
+            //    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+
+
+
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -102,10 +106,17 @@ namespace SnackPros
             // added usesession 
             app.UseSession();
 
+
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapRazorPages();
+            });
+            //app.UseMvc();
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
         }
     }

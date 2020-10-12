@@ -19,11 +19,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" />
 
 </head>
-<body class="search-background">
+<body class="search-background" style="padding-top: 140px;">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light fixed-top bg-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand text-white" asp-area="" asp-page="/Index">SnackPros</a>
+                <a  asp-area="" asp-page="/Index"class="navbar-brand rotated">
+                    <img src="~/images/Snack_Pro_Logo.png" height="70" alt="CoolBrand">
+                </a>
+                @*Commented out for new Logo 10/12/2020*@
+                @*<a class="navbar-brand text-white" asp-area="" asp-page="/Index">SnackPros</a>*@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,10 +45,10 @@
                                     Admin
                                 </a>
                                 <div class="dropdown-menu bg-primary">
-                                    <a class="dropdown-item text-white" asp-page="/Admin/Category/Index">Category</a>
-                                    <a class="dropdown-item text-white" asp-page="/Admin/SnackType/Index">Snack Type</a>
-                                    <a class="dropdown-item text-white" asp-page="/Admin/MenuItem/Index">Menu Item</a>
-                                    <a class="dropdown-item text-white" asp-page="/Admin/User/Index">Users</a>
+                                    <a class="dropdown-item text-white" asp-page="/Admin/Category/Index">Add Categories</a>
+                                    <a class="dropdown-item text-white" asp-page="/Admin/SnackType/Index"> Add Snack Types</a>
+                                    <a class="dropdown-item text-white" asp-page="/Admin/MenuItem/Index">Add Menu Items</a>
+                                    <a class="dropdown-item text-white" asp-page="/Admin/User/Index">Manage Users</a>
                                 </div>
                             </li>
                         }

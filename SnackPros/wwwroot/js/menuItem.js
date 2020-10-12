@@ -17,9 +17,9 @@ function loadList() {
 
         "columns": [
             { "data": "name", "width": "25%" },
-            { "data": "price", "width": "15%" },
+            { "data": "price", "width": "5%" },
             { "data": "category.name", "width": "15%" },
-            { "data": "snackType.name", "width": "15%" },
+            { "data": "snackType.name", "width": "10%" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -33,7 +33,7 @@ function loadList() {
                              </div>
                            
                            `;
-                }, "width" : "30%"
+                }, "width" : "20%"
             }
         ],
         "language": {

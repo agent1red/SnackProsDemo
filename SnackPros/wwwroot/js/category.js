@@ -16,8 +16,8 @@ function loadList() {
         },
 
         "columns": [
-            { "data": "name", "width": "40%" },
-            { "data": "displayOrder", "width": "30%" },
+            { "data": "name", "width": "60%" },
+            { "data": "displayOrder", "width": "10%" },
             {
                 "data": "id",
                 "render": function (data) {

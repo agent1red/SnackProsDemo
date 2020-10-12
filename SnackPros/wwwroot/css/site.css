@@ -14,6 +14,10 @@ a {
   color: #0366d6;
 }
 
+.rotated {
+    transform: rotate(-25deg); /* Equal to rotateZ(45deg) */
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

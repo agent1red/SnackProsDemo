@@ -3,24 +3,32 @@
 
 $(document).ready(function () {
     loadList();
-    
+
 });
 
 function loadList() {
     dataTable = $('#DT-load').DataTable({
 
         "ajax": {
-                "url": "/api/user",
-               "type": "GET",
-          "datatype" : "json"
+            "url": "/api/user",
+            "type": "GET",
+            "datatype": "json"
         },
 
         "columns": [
             { "data": "fullName", "width": "25%" },
             { "data": "email", "width": "25%" },
-            { "data": "phoneNumber", "width": "25%" },
             {
-                "data": {id: "id", lockoutEnd: "lockoutEnd"},
+                "data": "phoneNumber", render: function (toFormat) {
+                    var tPhone;
+                    tPhone = toFormat.toString();
+                    tPhone = '(' + tPhone.substring(0, 3) + ') ' + tPhone.substring(3, 6) + '-' + tPhone.substring(6, 10);
+                    return tPhone
+                }, "width": "15%"
+            },
+
+            {
+                "data": { id: "id", lockoutEnd: "lockoutEnd" },
                 "render": function (data) {
                     var today = new Date().getTime();
                     var lockout = new Date(data.lockoutEnd).getTime();
@@ -38,11 +46,11 @@ function loadList() {
                                     <i class="fas fa-lock"></i> Lock
                                 </a> </div>`;
                     }
-                }, "width" : "30%"
+                }, "width": "10%"
             }
         ],
         "language": {
-            "emptyTable" : "no data found."
+            "emptyTable": "no data found."
         },
         "width": "100%"
     });
@@ -50,21 +58,21 @@ function loadList() {
 
 
 function LockUnlock(id) {
-  
-            $.ajax({
-                type: 'POST',
-                url: '/api/User',
-                data: JSON.stringify(id),
-                contentType:"application/json",
-                success: function (data) {
-                    if (data.success) {
-                        toastr.success(data.message);
-                        dataTable.ajax.reload();
-                    }
-                    else {
-                        toastr.error(data.message);
-                    }
-                }
-            });
-      
+
+    $.ajax({
+        type: 'POST',
+        url: '/api/User',
+        data: JSON.stringify(id),
+        contentType: "application/json",
+        success: function (data) {
+            if (data.success) {
+                toastr.success(data.message);
+                dataTable.ajax.reload();
+            }
+            else {
+                toastr.error(data.message);
+            }
+        }
+    });
+
 }

@@ -26,9 +26,14 @@ function loadList(param) {
         },
 
         "columns": [
-            { "data": "orderHeader.id", "width": "20%" },
-            { "data": "orderHeader.pickupName", "width": "20%" },
-            { "data": "orderHeader.applicationUser.email", "width": "20%" },
+            { "data": "orderHeader.id", "autoWidth": true },
+            { "data": "orderHeader.pickupName", "autoWidth": true },
+            { "data": "orderHeader.applicationUser.email", "autoWidth": true },
+            { "data": "orderHeader.orderDate", "render": function (data) {
+                    var date = new Date(data);
+                    var month = date.getMonth() + 1;
+                    return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+            }, "autoWidth": true },
             {
                 "data": "orderHeader.orderTotal", render: $.fn.dataTable.render.number(',', '.', 2, '$'),  "width": "20%"},
             {
@@ -41,12 +46,14 @@ function loadList(param) {
                              </div>
                            
                            `;
-                }, "width": "20%"
+                }, "autoWidth": true
             }
         ],
         "language": {
             "emptyTable": "no data found."
         },
-        "width": "100%"
+        "width": "100%",
+        "order": [[3, "asc"]]
     });
 }
+

@@ -16,19 +16,26 @@
                     <div class="backgroundWhiteBorder10Padding">
                         <div class="row">
                             <div class="col-4">
+                                <script>
+                                    var pickUpTime = new Date("@item.OrderHeader.PickUpTime")
+
+                                </script>
                                 Order Number : @item.OrderHeader.Id
+                                <p class="timer">test</p>
                                 <ul class="text-info">
                                     @foreach (var details in item.OrderDetails)
                                     {
                                         <li>@details.Name x @details.Count</li>
-                                    }
 
+
+                                    }
                                 </ul>
+                             
                             </div>
                             <div class="col-4 pb-2">
                                 <div class="input-group pb-2">
                                     <div class="input-group-append">
-                                        <span class="input-group-text">Time</span>
+                                        <span class="input-group-text">Pickup Time</span>
                                     </div>
                                     <input type="text" class="border rounded form-control" readonly value="@item.OrderHeader.PickUpTime" />
                                 </div>
@@ -37,6 +44,7 @@
                                     if (comments == null || comments.Trim().Length == 0)
                                     {
                                         item.OrderHeader.Comments = "No Instructions.";
+
                                     }
                                 }
 
@@ -85,4 +93,6 @@
 
 </form>
 
-
+@section Scripts{
+    <script src="~/js/countTimer.js"></script>
+}

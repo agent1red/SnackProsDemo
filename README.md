@@ -4,7 +4,7 @@ ASP.NET Core 3.1 Razor Pages Demo
 - CRUD Operations in Razor Pages
 - ASP Handelers
 - Repository Pattern
-- API Controllers 
+- API Controllers using MVC  
 - Server/Client Validation
 - DataBase Migrations (code first approach)
 - Table creating/sorting on load

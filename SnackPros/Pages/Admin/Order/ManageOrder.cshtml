@@ -12,49 +12,45 @@
         <div class="container row bg-white p-2 border mb-3 rounded">
             @foreach (var item in Model.orderDetailsVM)
             {
-                <div class="col-12 pb-3 pt-3 mt-4 border  rounded">
-                    <div class="backgroundWhiteBorder10Padding">
-                        <div class="row">
+                <div class="col-12 pb-3 pt-3 mt-4 border rounded">
+                    <div class="bg-white  ">
+                        <div class="row" id="demo">
                             <div class="col-4">
-                                <script>
-                                    var pickUpTime = new Date("@item.OrderHeader.PickUpTime")
-
-                                </script>
                                 Order Number : @item.OrderHeader.Id
-                                <p class="timer">test</p>
                                 <ul class="text-info">
                                     @foreach (var details in item.OrderDetails)
                                     {
                                         <li>@details.Name x @details.Count</li>
-
-
                                     }
                                 </ul>
-                             
                             </div>
                             <div class="col-4 pb-2">
                                 <div class="input-group pb-2">
                                     <div class="input-group-append">
                                         <span class="input-group-text">Pickup Time</span>
                                     </div>
-                                    <input type="text" class="border rounded form-control" readonly value="@item.OrderHeader.PickUpTime" />
+                                    <p hidden class="exp1"> @item.OrderHeader.PickUpTime</p>
+                                    <input type="text" class=" border rounded form-control" readonly value="@item.OrderHeader.PickUpTime" />
                                 </div>
                                 @{
                                     var comments = item.OrderHeader.Comments;
                                     if (comments == null || comments.Trim().Length == 0)
                                     {
                                         item.OrderHeader.Comments = "No Instructions.";
-
                                     }
                                 }
-
                                 <textarea asp-for="@item.OrderHeader.Comments" readonly class="rounded border form-control" style="width:100%;height:75px;"></textarea>
                             </div>
                             <div class="col-3 offset-1 d-flex align-content-center">
                                 <div class="col-12">
+
+                                    @*added timer to track countdown to order in progress*@
+                                    <div class="col-12 badge bg-primary timer text-center text-wrap font-weight-light mb-4" style="font-size:14px;"></div>
+                                    @*end update*@
+
                                     @if (item.OrderHeader.Status.Equals(SnackPros.Utility.SD.StatusSubmitted))
                                     {
-                                        <button type="submit" class="btn btn-primary form-control mb-3" asp-page-handler="OrderPrepare" asp-route-OrderId="@item.OrderHeader.Id">
+                                        <button type="submit" class="btn btn-primary form-control mb-2" asp-page-handler="OrderPrepare" asp-route-OrderId="@item.OrderHeader.Id">
                                             <i class="fas fa-check"></i> &nbsp; Start Cooking
                                         </button>
                                     }
@@ -77,6 +73,7 @@
                                     </button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

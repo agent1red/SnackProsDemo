@@ -17,6 +17,7 @@ ASP.NET Core 3.1 Razor Pages Demo
 - User Authorization and account Lock 
 - SSO Using Facebook and Microsoft
 - Shopping cart functionality with session loading 
+- DOM manipulation with JQuery
 - Ordering System with Order Details and Management
 - Using Stripe payment system
  

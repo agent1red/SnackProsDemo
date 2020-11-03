@@ -4,7 +4,7 @@ ASP.NET Core 3.1 Razor Pages Demo
 - CRUD Operations in Razor Pages
 - ASP Handelers
 - Repository Pattern
-- API Controllers 
+- API Controllers using MVC  
 - Server/Client Validation
 - DataBase Migrations (code first approach)
 - Table creating/sorting on load
@@ -17,6 +17,7 @@ ASP.NET Core 3.1 Razor Pages Demo
 - User Authorization and account Lock 
 - SSO Using Facebook and Microsoft
 - Shopping cart functionality with session loading 
+- DOM manipulation with JQuery
 - Ordering System with Order Details and Management
 - Using Stripe payment system
  

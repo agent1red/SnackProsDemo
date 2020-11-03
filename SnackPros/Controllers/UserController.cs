@@ -43,7 +43,7 @@ namespace SnackPros.Controllers
             //If user is not locked
             else
             {
-                objFromDb.LockoutEnd = DateTime.Now.AddYears(10);
+                objFromDb.LockoutEnd = DateTime.Now.AddMinutes(2);
             }
             _unitOfWork.Save();
            

@@ -380,3 +380,30 @@ body {
     width: 210px !important;
     margin: 0 auto;
 }
+
+#instructions {
+    height: 0px;
+    width: 95px;
+    position: fixed;
+    right: 0;
+    top: 20%;
+    z-index: 1000;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+    #instructions button {
+        display: block;
+        width: 50px;
+        text-align: center;
+        padding: 8px 15px;
+        font-size: 20px;
+        border-bottom: solid 1px #333;
+        border-left: solid 1px #333;
+        border-right: solid 1px #fff;
+        text-decoration: none;
+    }
+
